@@ -1,104 +1,8 @@
 # Estrutura_de_Dados_2
 Space used to describe the challenges encountered in carrying out the assignments in the third week of the Data Structures 2 course.
 
-3.0 Doubly Linked Lists
-For all LinkedList-related questions, unless specified otherwise, assume the LinkedListand Node classes defined below.
+# Remove Duplicates From Linked List
 
-
-# To produce the file linkedlist.py, please remove the comment symbol '#' from the beginning of the line below.
-%%file linkedlist.py
-
-class Node:
-    """A class representing a node in a doubly linked list."""
-
-    def __init__(self, data):
-        """Initialize a new node with the given data."""
-        self.data = data
-        self.prev = None
-        self.next = None
-
-class LinkedList:
-    """A class representing a doubly linked list."""
-
-    def __init__(self):
-        """Initialize an empty linked list."""
-        self.head = None
-        self.tail = None
-        self.length = 0
-        
-    def append(self, data):
-        """Add a new node with the given data to the end of the linked list."""
-        new_node = Node(data)
-        if self.length == 0:
-            self.head = self.tail = new_node
-        else:
-            self.tail.next = new_node
-            new_node.prev = self.tail
-            self.tail = new_node
-        self.length += 1
-        
-    def __iter__(self):
-        """Return an iterator for the linked list."""
-        self._iter_node = self.head
-        return self 
-    
-    def __next__(self):
-        """Return the next value in the linked list."""
-        if self._iter_node is None:
-            raise StopIteration
-        ret = self._iter_node.data
-        self._iter_node = self._iter_node.next
-        return ret
-    
-    def prepend(self, data):
-        """Add a new node with the given data to the beginning of the linked list."""
-        new_node = Node(data)
-        if self.length == 0:
-            self.head = self.tail = new_node
-        else:
-            self.head.prev = new_node
-            new_node.next = self.head
-            self.head = new_node
-        self.length += 1
-        
-    def __len__(self):
-        """Return the length of the linked list."""
-        return self.length
-    
-    def __str__(self):
-        """Return a string representation of the linked list."""
-        return str([value for value in self])
-
-    def __eq__(self, other):
-        """Check if two linked lists are equal.
-
-        Traverse both linked lists and compare the data of each node. 
-        If the data of all nodes in both linked lists match, return True. 
-        Otherwise, return False.
-
-        Args:
-            other (LinkedList): The linked list to compare with self.
-
-        Returns:
-            bool: True if the linked lists are equal, False otherwise.
-        """
-        # Check if the lengths of the linked lists are the same
-        if len(self) != len(other):
-            print(self,other)
-            return False
-        
-        # Iterate over both linked lists and compare the data of each node
-        for node1, node2 in zip(self, other):
-            if node1 != node2:
-                print(node1.data,node2.data)
-                return False
-        
-        # If we made it this far, the linked lists are equal
-        return True
-     
-Writing linkedlist.py
-3.1 Remove Duplicates From Linked List
-Difficult: 😃 easy
 You're given the head of a doubly Linked List whose nodes are in sorted order with respect to their values. Write a function that returns a modified version of the Linked List that doesn't contain any node with duplicat values. The Linked List should be modified in place (i.e, you shouldn't create a brand new list), and the modified Linked List should still have its nodes sorted with respect to their values.
 
 Each LinkedList node is defined as described in Section 3.0.
@@ -282,8 +186,9 @@ test_remove_duplicaiton_from_linked_list_solution.py::test_6 PASSED      [ 85%]
 test_remove_duplicaiton_from_linked_list_solution.py::test_7 PASSED      [100%]
 
 ============================== 7 passed in 0.06s ===============================
-3.2 Merge Doubly Linked List
-Difficult: ⚠️ Medium
+
+#  Merge Doubly Linked List
+
 Write a function that takes two doubly linked lists that are in sorted order, respectively. The function should merge the lists in place (i.e., it shouldn't create a brand new list) and return the head of the merged list; the merged list should be in sorted order.
 
 Each LinkedList node is defined as described in Section 3.0.
@@ -558,10 +463,11 @@ test_mergeLinkedLists.py::test_8 PASSED                                  [ 88%]
 test_mergeLinkedLists.py::test_9 PASSED                                  [100%]
 
 ============================== 9 passed in 0.04s ===============================
-4.0 Stack
 
-# To produce the file stack.py, please remove the comment symbol '#' from the beginning of the line below.
-# Note you need to generate the file linkedlist.py in the Section 3.
+# Stack
+
+ To produce the file stack.py, please remove the comment symbol '#' from the beginning of the line below.
+ Note you need to generate the file linkedlist.py in the Section 3.
 
 %%file stack.py
 from linkedlist import *
@@ -608,8 +514,9 @@ class Stack(LinkedList):
         return ret
      
 Writing stack.py
-4.1 Sunset Views
-Difficult: ⚠️ Medium
+
+# Sunset Views
+
 Given an array of buildings and a direction that all of the buildings face, return an array of the indices of the buildings that can see the sunset.
 
 A building can see the sunset if its strictly taller than all of the buildings that come after it in the direction that it faces.
@@ -617,20 +524,6 @@ A building can see the sunset if its strictly taller than all of the buildings t
 The input array named buildings contains positive, non-zero integers representing the heights of the buildings. A building at index i thus has a height denoted by buildings[1]. All of the buildings face the same direction, and this direction is either east or west, denoted by the input string named direction, which will always be equal to either EAST or WEST. In relation to the input array, you can interpret these directions as right for east and left for west.
 
 Important note: the indices in the ouput array should be sorted in ascending order.
-
-Sample Input
-buildings = [3,5,4,4,3,1,3,2] direction = "EAST"
-
-Sample Output
-Below is the visual representation of the sample input
-"""_ | |_ _ | | | | _ | | | | | | | |_ | | | | | || | | ||||||||_| """ output = [1,3,6,7]
-
-Sample Input
-buildings = [3,5,4,4,3,1,3,2] direction = "WEST"
-
-Sample Output
-ouput = [0,1]
-
 
 %%file test_stack.py
 import pytest
