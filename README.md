@@ -3,6 +3,7 @@
 For all LinkedList-related questions, unless specified otherwise, assume the LinkedListand Node classes defined below.
 
 To produce the file linkedlist.py, please remove the comment symbol '#' from the beginning of the line below.
+
 %%file linkedlist.py
 
 class Node:
